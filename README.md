@@ -26,15 +26,6 @@ A command line entry point is installed by the `setup.py` script. Run it:
 
     $ idiot
 
-## Dependencies
-
-The following Python packages are required:
-
-* `rumps`
-* `scruffington` (scruffy)
-
-Idiot currently requires a custom version of the Python `rumps` package, modified by the author. There's a PR in and hopefully it will be merged soon. This is installed from GitHub using a dependency link.
-
 ## Configuration
 
 Create a file at `~/.idiot/config` to customise configuration. See `config/default.conf` in the package for more info. You can probably guess.
