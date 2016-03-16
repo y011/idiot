@@ -126,6 +126,7 @@ class CheckManager(PluginManager):
             check.last_result = (success, msg)
             if success:
                 log.debug("Success: {}".format(msg))
+                check.snooze_until = None
             else:
                 all_ok = False
                 log.error("Fail: {}".format(msg))
