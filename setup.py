@@ -20,7 +20,7 @@ setup(
         'packages': ['rumps'],
     }},
     setup_requires=['py2app'],
-    install_requires=['rumps', 'scruffington'],
+    install_requires=['rumps', 'scruffington', 'psutil', 'biplist'],
     entry_points={
         'console_scripts': ['idiot=idiot:main']
     },
