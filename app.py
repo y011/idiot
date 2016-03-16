@@ -1,0 +1,3 @@
+import idiot
+
+idiot.main()
