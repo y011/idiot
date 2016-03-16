@@ -59,6 +59,7 @@ New checks must be explicitly enabled in config. Edit your `~/.idiot/config` and
 
     enabled:
       - ApacheCheck
+      - FirewallCheck
       - MyUserCheck
 
 When testing, you might want to edit your config to enable debug loggin, make the checks run more frequently and lower the snooze intervals with a config like this:
