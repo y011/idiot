@@ -43,7 +43,7 @@ Snoozing uses a series of intervals (by default 1hr, 6hrs and forever) so the fi
 
 Idiot adds an icon to the OS X status bar. Hopefully this will be a happy face telling you everything is OK. If something goes wrong, the icon changes. The menu underneath the icon reflects the status of the most recent run of checks:
 
-![status_menu](http://i.imgur.com/mCFgMH5.png)
+![status_menu](http://i.imgur.com/ZwAAfna.png)
 
 ## Configuration
 
