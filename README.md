@@ -61,6 +61,7 @@ New checks must be explicitly enabled in config. Edit your `~/.idiot/config` and
       - ApacheCheck
       - FirewallCheck
       - DockerMachineCheck
+      - DockerCheck
       - VagrantCheck
       - MyUserCheck
 
