@@ -2,7 +2,7 @@
 
 *Your best is an idiot.*
 
-Idiot is an OS X tool to remind you not to be stupid.
+Idiot is an OS X tool for reminding you not to be stupid.
 
 * Ever turn off your firewall because that Meterpreter callback wasn't working and then forget to turn it back on?
 * Ever run Apache to test something and forget to kill it?
