@@ -22,7 +22,7 @@ class DockerMachineCheck(CheckPlugin):
             else:
                 return (True, "No Docker machines are running")
         except Exception as e:
-            log.exception()
+            log.exception("Failed to get `docker-machine ls` output")
             return (False, "Failed to get `docker-machine ls` output")
 
 
