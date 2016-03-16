@@ -10,6 +10,11 @@ Idiot is an OS X tool to remind you not to be stupid.
 
 Idiot is the tool for you. Idiot runs checks (written in Python) every now and then, and if it finds something is awry it will throw up a notification dialog and put an indicative icon in the OS X status bar. It will keep reminding you every time it checks, until you either "snooze" notifications for that particular check or defenstrate your machine.
 
+Built-in checks:
+
+* Apache
+* Firewall
+
 ## Installation
 
 Note: Eventually this will be a proper `.app` but there's a bug that needs to be addressed which means it doesn't work as a `py2app` target yet.
