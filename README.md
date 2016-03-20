@@ -8,7 +8,7 @@ Idiot is an OS X tool for reminding you not to be stupid.
 * Ever run Apache to test something and forget to kill it?
 * Ever spin up a MongoDB instance in Docker and accidentally leave it running with no password and a ton of production data in it?
 
-Idiot is the tool for you. Idiot runs checks (written in Python) every now and then, and if it finds something is awry it will throw up a notification dialog and put an indicative icon in the OS X status bar. It will keep reminding you every time it checks, until you either "snooze" notifications for that particular check or defenstrate your machine.
+Idiot is the tool for you. Idiot runs checks (written in Python) every now and then, and if it finds something is awry it will throw up a notification dialog and put an indicative icon in the OS X status bar. It will keep reminding you every time it checks, until you either "snooze" notifications for that particular check or defenestrate your machine.
 
 Built-in checks:
 
