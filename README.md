@@ -14,6 +14,8 @@ Built-in checks:
 
 * Apache
 * Firewall
+* Docker
+* Vagrant
 
 ## Installation
 
@@ -60,7 +62,6 @@ New checks must be explicitly enabled in config. Edit your `~/.idiot/config` and
     enabled:
       - ApacheCheck
       - FirewallCheck
-      - DockerMachineCheck
       - DockerCheck
       - VagrantCheck
       - MyUserCheck
