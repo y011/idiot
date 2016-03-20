@@ -8,8 +8,8 @@ import random
 from scruffy import *
 from Foundation import *
 
-OK_TITLES = [u"😏", u"😁", u"😃", u"😄", u"😆"]
-NOT_OK_TITLES = [u"🚑"]
+OK_TITLES = [u"😏", u"😁", u"😃", u"😄", u"😆", u"🤘", u"👌"]
+NOT_OK_TITLES = [u"🚑",u"🖕"]
 
 
 def init():
