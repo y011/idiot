@@ -31,6 +31,8 @@ class DockerCheck(CheckPlugin):
             log.exception("Failed to enumerate docker containers")
             return (False, "Failed to enumerate docker containers")
 
+        return (True, "No Docker machines are running")
+
 
 if __name__ == "__main__":
     idiot.init()
