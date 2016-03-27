@@ -5,6 +5,7 @@ Example check for Idiot.
 import psutil
 import re
 
+import idiot
 from idiot import CheckPlugin
 
 
@@ -18,10 +19,10 @@ class ApacheCheck(CheckPlugin):
         All check scripts must implement this method. It must return a tuple of:
         (<success>, <message>)
 
-        In this example, if the check succeeds and the apache process is nowhere
+        In this example, if the check succeeds and the Apache process is nowhere
         to be found, the check will return (True, "No httpd processes found").
 
-        If the check fails and an apache process is found, it returns
+        If the check fails and an Apache process is found, it returns
         (False, "Found httpd processes with pids <pids>")
         """
         pids = []
@@ -39,4 +40,5 @@ class ApacheCheck(CheckPlugin):
 
 
 if __name__ == "__main__":
+    idiot.init()
     print(ApacheCheck().run())
