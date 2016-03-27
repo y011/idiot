@@ -4,16 +4,17 @@ Idiot check for Apple Remote Desktop management with ARDAgent
 purpose: indicates if Sharing Preferences: Remote Management using Apple Remote Desktop management is permitted to this
     machine
 
-daemon: 
+daemon:
     /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/MacOS/ARDAgent
 
-requirement: ARD permits remote execution and beyond as the accessing or 
+requirement: ARD permits remote execution and beyond as the accessing or
     logged in user. Also permits remote console/interactive access of course
 """
 
 import psutil
 import re
 
+import idiot
 from idiot import CheckPlugin
 
 
@@ -48,4 +49,5 @@ class ARDAgentCheck(CheckPlugin):
 
 
 if __name__ == "__main__":
+    idiot.init()
     print(ARDAgentCheck().run())

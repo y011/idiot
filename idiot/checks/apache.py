@@ -5,6 +5,7 @@ Example check for Idiot.
 import psutil
 import re
 
+import idiot
 from idiot import CheckPlugin
 
 
@@ -39,4 +40,5 @@ class ApacheCheck(CheckPlugin):
 
 
 if __name__ == "__main__":
+    idiot.init()
     print(ApacheCheck().run())

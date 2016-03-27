@@ -1,17 +1,17 @@
 """
 Idiot check for FileSharing via SMB or AFP is on
 
-purpose: indicates if Sharing Preferences: File Sharing using SMB or AFP is 
+purpose: indicates if Sharing Preferences: File Sharing using SMB or AFP is
     permitted to this machine
 
-daemons: 
+daemons:
     /usr/sbin/AppleFileServer
     /usr/sbin/smbd
 
 requirement: oversharing is always bad
 
 
-These are managed by launchd (as seen below) but I'm not sure how just yet. Not 
+These are managed by launchd (as seen below) but I'm not sure how just yet. Not
 directly but from something else.
 
 $ sudo lsof -n -i tcp:548
@@ -44,11 +44,12 @@ Might be from com.apple.sharingd although I think that's more client functions f
 import psutil
 import re
 
+import idiot
 from idiot import CheckPlugin
 
 
 class FileSharingCheck(CheckPlugin):
-    name = "FileSharing"
+    name = "File sharing"
 
     def run(self):
         """
@@ -72,10 +73,11 @@ class FileSharingCheck(CheckPlugin):
                 pass
 
         if len(pids):
-            return (False, "Found SMB or AFP FileSharing processes with pids: {} - Disable Sharing Prefs: File Sharing".format(', '.join([str(p) for p in pids])))
+            return (False, "Found SMB or AFP file sharing processes with pids: {} - Disable Sharing Prefs: File Sharing".format(', '.join([str(p) for p in pids])))
         else:
-            return (True, "FileSharing is disabled")
+            return (True, "File sharing is disabled")
 
 
 if __name__ == "__main__":
+    idiot.init()
     print(FileSharingCheck().run())
