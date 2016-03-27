@@ -4,7 +4,7 @@ Idiot check for sshd / Remote Login
 purpose: indicates if "Sharing Preferences: Remote Login" or OpenSSH's sshd is
     otherwise running
 
-daemon: 
+daemon:
     /usr/sbin/sshd
 
 requirement: sshd provides interactive access with valid creds. Best left off.
@@ -12,13 +12,13 @@ requirement: sshd provides interactive access with valid creds. Best left off.
 
 
 info:
-Detecting this is tricky because until it's accessed launchd hasn't 
-forked the sshd process so there's nothing visible in process table. 
+Detecting this is tricky because until it's accessed launchd hasn't
+forked the sshd process so there's nothing visible in process table.
 While a system is being accessed (or scanned even), though, the sshd process
 is visible. Once a session ends (or login times out) the sshd process exits
 leaving launchd to listen for the SSH client to connect
 
-The correct way to check for this being enabled is using launchctl 
+The correct way to check for this being enabled is using launchctl
 checking output of:
 
 $ launchctl print system/com.openssh.sshd state
@@ -38,10 +38,11 @@ a manually invoked sshd left behind from, say, an rsync serving or a breach
 import psutil
 import re
 
+import idiot
 from idiot import CheckPlugin
 
 
-class sshdCheck(CheckPlugin):
+class SSHDCheck(CheckPlugin):
     name = "sshd"
 
     def run(self):
@@ -72,4 +73,5 @@ class sshdCheck(CheckPlugin):
 
 
 if __name__ == "__main__":
-    print(sshdCheck().run())
+    idiot.init()
+    print(SSHDCheck().run())

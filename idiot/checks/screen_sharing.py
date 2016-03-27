@@ -1,7 +1,7 @@
 """
 Idiot check for ScreenSharing
 
-purpose: indicates if Sharing Preferences: Screen Sharing / VNC is permitted to 
+purpose: indicates if Sharing Preferences: Screen Sharing / VNC is permitted to
     this machine
 
 daemons:
@@ -11,8 +11,8 @@ daemons:
 requirement: ScreenSharing permits remote console/interactive access.
 
 info:
-Detecting this is tricky because until it's accessed neither of the above are 
-forked as processes visible in process table. Once a system has been accessed, 
+Detecting this is tricky because until it's accessed neither of the above are
+forked as processes visible in process table. Once a system has been accessed,
 though, these processes remain until Sharing:Screen Sharing is disabled
 
  Might need to read defaults or a plist instead.
@@ -21,7 +21,7 @@ though, these processes remain until Sharing:Screen Sharing is disabled
 
  Actually the *right* way to do this is by calling launchctl
 
- $ launchctl list 
+ $ launchctl list
 
  $ launchctl print system/com.apple.screensharing state
 
@@ -40,11 +40,12 @@ Could not find service "com.apple.screensharing" in domain for system
 import psutil
 import re
 
+import idiot
 from idiot import CheckPlugin
 
 
 class ScreenSharingCheck(CheckPlugin):
-    name = "ScreenSharing"
+    name = "Screen sharing"
 
     def run(self):
         """
@@ -68,10 +69,11 @@ class ScreenSharingCheck(CheckPlugin):
                 pass
 
         if len(pids):
-            return (False, "Found ScreenSharing processes with pids: {} - Disable Sharing Prefs: Screen Sharing".format(', '.join([str(p) for p in pids])))
+            return (False, "Found screen sharing processes with pids: {} - Disable Sharing Prefs: Screen Sharing".format(', '.join([str(p) for p in pids])))
         else:
-            return (True, "ScreenSharing is disabled")
+            return (True, "Screen sharing is disabled")
 
 
 if __name__ == "__main__":
+    idiot.init()
     print(ScreenSharingCheck().run())
