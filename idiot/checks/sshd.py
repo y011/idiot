@@ -53,7 +53,7 @@ class SSHDCheck(CheckPlugin):
                 # the query returns a non-zero error
                 # should use this query better in future
                 if subprocess.check_call(['launchctl', 'print', 'system/com.openssh.sshd'], stdout=devnull, stderr=devnull):
-                    return (True, "Dat")
+                    return (True, "disabled")
                 else:
                     return (False, "enabled in Sharing Prefs: Remote Login")
             except subprocess.CalledProcessError as e:

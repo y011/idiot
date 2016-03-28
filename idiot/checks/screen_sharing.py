@@ -58,7 +58,7 @@ class ScreenSharingCheck(CheckPlugin):
                 # the query returns a non-zero error
                 # should use this query better in future
                 if subprocess.check_call(['launchctl', 'print', 'system/com.apple.screensharing'], stdout=devnull, stderr=devnull):
-                    return (True, "Dat")
+                    return (True, "disabled")
                 else:
                     return (False, "enabled in Sharing Prefs: Screen Sharing")
             except subprocess.CalledProcessError as e:

@@ -78,9 +78,9 @@ class FileSharingCheck(CheckPlugin):
                 pass
 
         if len(pids):
-            return (False, "Found SMB or AFP file sharing processes with pids: {} - Disable Sharing Prefs: File Sharing".format(', '.join([str(p) for p in pids])))
+            return (False, "found SMB or AFP file sharing processes with pids: {} - Disable Sharing Prefs: File Sharing".format(', '.join([str(p) for p in pids])))
         else:
-            return (True, "File sharing is disabled")
+            return (True, "disabled")
 
 
 if __name__ == "__main__":

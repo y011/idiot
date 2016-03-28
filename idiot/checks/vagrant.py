@@ -20,10 +20,10 @@ class VagrantCheck(CheckPlugin):
             if len(running):
                 return (False, "VMs are running: {}".format(', '.join(running)))
             else:
-                return (True, "No VMs are running")
+                return (True, "no VMs are running")
         except Exception as e:
             log.exception("Failed to get `vagrant global-status` output")
-            return (False, "Failed to get `vagrant global-status` output")
+            return (False, "failed to get `vagrant global-status` output")
 
 
 if __name__ == "__main__":
