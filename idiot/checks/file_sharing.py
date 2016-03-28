@@ -1,5 +1,8 @@
 """
-Idiot check for FileSharing via SMB or AFP is on
+Idiot check if FileSharing via SMB or AFP is on
+
+NOTE: Currently this is only detected if it's been accessed by a client causing launchd
+to spawn AppleFileServer or smbd. Fixed soon.
 
 purpose: indicates if Sharing Preferences: File Sharing using SMB or AFP is
     permitted to this machine
@@ -10,7 +13,10 @@ daemons:
 
 requirement: oversharing is always bad
 
+Currently this is only detected if it's been accessed by a client causing launchd
+to spawn AppleFileServer or smbd.
 
+Info:
 These are managed by launchd (as seen below) but I'm not sure how just yet. Not
 directly but from something else.
 
@@ -38,7 +44,6 @@ $ ps -ax |grep -i smb
  4728 ??         0:00.01 /usr/sbin/smbd
 
 
-Might be from com.apple.sharingd although I think that's more client functions for mDNS-happy sharing fun
 """
 
 import psutil

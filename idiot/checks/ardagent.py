@@ -9,45 +9,38 @@ daemon:
 
 requirement: ARD permits remote execution and beyond as the accessing or
     logged in user. Also permits remote console/interactive access of course
-"""
+    This checks both launchd enabling ARDAgent and manually starting ARDAgent
+    ARDAgent is defined in launchd (seen in launchctl list but doesn't output config
+    from a launchctl print. The PID-based check is what actually detects ARDAgent
+    but we'll try to check the launchctl one too later
 
+"""
+import logging
+import subprocess
+import os
 import psutil
-import re
 
 import idiot
 from idiot import CheckPlugin
 
+log = logging.getLogger()
 
-class ARDAgentCheck(CheckPlugin):
-    name = "ARDAgent"
+class RemoteManagementCheck(CheckPlugin):
+    name = "Remote Management"
 
     def run(self):
-        """
-        Run the check.
-
-        All check scripts must implement this method. It must return a tuple of:
-        (<success>, <message>)
-
-        In this example, if the check succeeds and the ARDAgent process is nowhere
-        to be found, the check will return (True, "No ARDAgent processes found").
-
-        If the check fails and an ARDAgent process is found, it returns
-        (False, "Found ARDAgent processes with pids <pids>")
-        """
         pids = []
         for p in psutil.process_iter():
             try:
-                if p.name() == 'ARDAgent':
+                if p.name() == "ARDAgent":
                     pids.append(p.pid)
             except psutil.NoSuchProcess:
                 pass
-
         if len(pids):
-            return (False, "Found ARDAgent processes with pids: {} - Disable Sharing Prefs: Remote Management".format(', '.join([str(p) for p in pids])))
+            return (False, "enabled in Sharing Prefs: Remote Management - pids: {}".format(', '.join([str(p) for p in pids])))
         else:
-            return (True, "ARDAgent is disabled")
-
+            return (True, "disabled")
 
 if __name__ == "__main__":
     idiot.init()
-    print(ARDAgentCheck().run())
+    print(RemoteManagementCheck().run())
