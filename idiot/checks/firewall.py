@@ -15,9 +15,9 @@ class FirewallCheck(CheckPlugin):
             d = biplist.readPlist('/Library/Preferences/com.apple.alf.plist')
             enabled = (d['globalstate'] == 1)
         except:
-            return (False, "Failed to read firewall config plist")
+            return (False, "failed to read firewall config plist")
 
-        return (enabled, "Firewall is {}".format("enabled" if enabled else "disabled"))
+        return (enabled, "{}".format("enabled" if enabled else "disabled"))
 
 
 if __name__ == "__main__":

@@ -24,14 +24,14 @@ class DockerCheck(CheckPlugin):
                 ps = subprocess.check_output('\n'.join([env, 'docker ps']), shell=True).split('\n')[1:]
                 images = [line.split()[1] for line in ps if len(line)]
                 if len(images):
-                    return (False, "Docker containers are running: {}".format(', '.join(images)))
+                    return (False, "docker containers are running: {}".format(', '.join(images)))
                 else:
-                    return (True, "No Docker containers are running")
+                    return (True, "no Docker containers are running")
         except Exception as e:
             log.exception("Failed to enumerate docker containers")
-            return (False, "Failed to enumerate docker containers")
+            return (False, "failed to enumerate docker containers")
 
-        return (True, "No Docker machines are running")
+        return (True, "no Docker machines are running")
 
 
 if __name__ == "__main__":
