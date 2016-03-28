@@ -84,5 +84,4 @@ class FileSharingCheck(CheckPlugin):
 
 
 if __name__ == "__main__":
-    idiot.init()
     print(FileSharingCheck().run())

@@ -40,5 +40,4 @@ class ApacheCheck(CheckPlugin):
 
 
 if __name__ == "__main__":
-    idiot.init()
     print(ApacheCheck().run())

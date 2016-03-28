@@ -25,6 +25,7 @@ from idiot import CheckPlugin
 
 log = logging.getLogger()
 
+
 class RemoteManagementCheck(CheckPlugin):
     name = "Remote Management"
 
@@ -42,5 +43,4 @@ class RemoteManagementCheck(CheckPlugin):
             return (True, "disabled")
 
 if __name__ == "__main__":
-    idiot.init()
     print(RemoteManagementCheck().run())

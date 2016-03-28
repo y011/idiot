@@ -27,5 +27,4 @@ class VagrantCheck(CheckPlugin):
 
 
 if __name__ == "__main__":
-    idiot.init()
     print(VagrantCheck().run())

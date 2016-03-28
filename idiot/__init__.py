@@ -11,22 +11,26 @@ from Foundation import *
 OK_TITLES = [u"😏", u"😁", u"😃", u"😄", u"😆"]
 NOT_OK_TITLES = [u"🚑"]
 
+inited = False
+
 
 def init():
-    global env, config, log
-    env = Environment(
-        main_dir=Directory(
-            '~/.idiot', create=True,
-            config=ConfigFile('~/.idiot/config', defaults=File('config/default.conf', parent=PackageDirectory())),
-            user_checks=PluginDirectory('checks'),
-            log=LogFile('idiot.log', logger='')
-        ),
-        pkg_checks=PluginDirectory('checks', parent=PackageDirectory())
-    )
-    config = env.config
-    log = logging.getLogger()
-    if config.debug_logging:
-        log.setLevel(logging.DEBUG)
+    global env, config, log, inited
+    if not inited:
+        env = Environment(
+            main_dir=Directory(
+                '~/.idiot', create=True,
+                config=ConfigFile('~/.idiot/config', defaults=File('config/default.conf', parent=PackageDirectory())),
+                user_checks=PluginDirectory('checks'),
+                log=LogFile('idiot.log', logger='')
+            ),
+            pkg_checks=PluginDirectory('checks', parent=PackageDirectory())
+        )
+        config = env.config
+        log = logging.getLogger()
+        if config.debug_logging:
+            log.setLevel(logging.DEBUG)
+        inited = True
 
 
 @rumps.notifications
@@ -43,6 +47,10 @@ class CheckPlugin(Plugin):
     last_result = (True, "Not run yet")
 
     def __init__(self):
+        # make sure the package is initialised
+        if not inited:
+            init()
+
         # if custom snooze intervals are not defined for this check, use the config's
         if self.snooze_intervals is None:
             self.snooze_intervals = config.snooze_intervals.to_dict()
