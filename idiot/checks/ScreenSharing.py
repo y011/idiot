@@ -62,18 +62,6 @@ class ScreenSharingCheck(CheckPlugin):
             except subprocess.CalledProcessError as e:
                 # this only gets run if screensharing isn't enabled by
                 # launchd as checked above
-                """
-                pids = []
-                for p in psutil.process_iter():
-                    try:
-                        if (p.name() == 'ScreensharingAgent' or p.name() == 'screensharingd'):
-                            pids.append(p.pid)
-                    except psutil.NoSuchProcess:
-                        pass
-                if len(pids):
-                    return (False, "enabled manually - see pids: {} ".format(', '.join([str(p) for p in pids])))
-                else:
-                    """
                 return (True, "disabled")
 
 if __name__ == "__main__":

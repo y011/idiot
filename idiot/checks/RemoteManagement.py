@@ -12,7 +12,7 @@ requirement: ARD permits remote execution and beyond as the accessing or
     This checks both launchd enabling ARDAgent and manually starting ARDAgent
     ARDAgent is defined in launchd (seen in launchctl list but doesn't output config
     from a launchctl print. The PID-based check is what actually detects ARDAgent
-    but we're going to leave the launchctl one in for now too (but disable it).
+    but we'll try to check the launchctl one too later
 
 """
 import logging
@@ -29,21 +29,6 @@ class RemoteManagementCheck(CheckPlugin):
     name = "Remote Management"
 
     def run(self):
-        
-        """
-        with open(os.devnull, 'w') as devnull:
-            try:
-                # If the service is disabled in Preferences
-                # the query returns a non-zero error
-                # should use this query better in future
-                if subprocess.check_call(['launchctl', 'print', 'system/com.apple.RemoteDesktop.agent', 'state'], stdout=devnull, stderr=devnull):
-                    pass
-                else:
-                    return (False, "enabled in Sharing Prefs: Remote Management")           
-            except subprocess.CalledProcessError as e:
-                # this only gets run if myproc isn't enabled by
-                # launchd as checked above
-                """
         pids = []
         for p in psutil.process_iter():
             try:
