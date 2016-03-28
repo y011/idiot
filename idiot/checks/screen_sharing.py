@@ -47,6 +47,7 @@ from idiot import CheckPlugin
 
 log = logging.getLogger()
 
+
 class ScreenSharingCheck(CheckPlugin):
     name = "Screen sharing"
 
@@ -66,5 +67,4 @@ class ScreenSharingCheck(CheckPlugin):
                 return (True, "disabled")
 
 if __name__ == "__main__":
-    idiot.init()
     print(ScreenSharingCheck().run())

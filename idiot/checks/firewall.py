@@ -21,5 +21,4 @@ class FirewallCheck(CheckPlugin):
 
 
 if __name__ == "__main__":
-    idiot.init()
     print(FirewallCheck().run())

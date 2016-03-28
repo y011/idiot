@@ -72,5 +72,4 @@ class SSHDCheck(CheckPlugin):
                     return (True, "disabled")
 
 if __name__ == "__main__":
-    idiot.init()
     print(SSHDCheck().run())

@@ -35,5 +35,4 @@ class DockerCheck(CheckPlugin):
 
 
 if __name__ == "__main__":
-    idiot.init()
     print(DockerCheck().run())
