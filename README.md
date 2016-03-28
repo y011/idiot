@@ -16,6 +16,10 @@ Built-in checks:
 * Firewall
 * Docker
 * Vagrant
+* ARDAgent
+* File sharing
+* Screen sharing
+* SSH
 
 ## Installation
 
@@ -61,9 +65,7 @@ New checks must be explicitly enabled in config. Edit your `~/.idiot/config` and
 
     enabled:
       - ApacheCheck
-      - FirewallCheck
-      - DockerCheck
-      - VagrantCheck
+      ...
       - MyUserCheck
 
 When testing, you might want to edit your config to enable debug loggin, make the checks run more frequently and lower the snooze intervals with a config like this:
