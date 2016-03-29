@@ -180,7 +180,8 @@ class IdiotApp(rumps.App):
             item = rumps.MenuItem("{} ({})".format(check.name, msg), callback=dummy)
             item.state = 1 if success else -1
             menu.append(item)
-        self.menu = menu + [None, rumps.MenuItem('Quit', callback=rumps.quit_application)]
+        self.menu = menu + [None, rumps.MenuItem('Check Now', callback=self.cm.run_checks),
+                            rumps.MenuItem('Quit', callback=rumps.quit_application)]
 
 
 def main():
