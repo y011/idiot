@@ -4,12 +4,10 @@ import AppKit
 import logging
 import datetime
 import random
+import emoji
 
 from scruffy import *
 from Foundation import *
-
-OK_TITLES = [u"😏", u"😁", u"😃", u"😄", u"😆"]
-NOT_OK_TITLES = [u"🚑"]
 
 inited = False
 
@@ -149,10 +147,9 @@ class CheckManager(PluginManager):
             if self.last_ok != all_ok:
                 self.last_ok = all_ok
                 if all_ok:
-                    app.title = random.choice(OK_TITLES)
+                    app.title = emoji.emojize(random.choice(list(config.ok_titles)), use_aliases=True)
                 else:
-                    app.title = random.choice(NOT_OK_TITLES)
-
+                    app.title = emoji.emojize(random.choice(list(config.not_ok_titles)), use_aliases=True)
             app.update_menu()
         except NameError:
             log.error("No app")
@@ -161,7 +158,7 @@ class CheckManager(PluginManager):
 class IdiotApp(rumps.App):
     def __init__(self, *args, **kwargs):
         super(IdiotApp, self).__init__(*args, **kwargs)
-        self.title = random.choice(OK_TITLES)
+        self.title = emoji.emojize(random.choice(list(config.ok_titles)), use_aliases=True)
         self.cm = CheckManager()
         self.quit_button = None
         self.update_menu()
