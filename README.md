@@ -23,19 +23,13 @@ Built-in checks:
 
 ## Installation
 
-Note: Eventually this will be a proper `.app` but there's a bug that needs to be addressed which means it doesn't work as a `py2app` target yet.
+Download the binary from `releases` on GitHub, unzip and drag the app to the `/Applications` folder.
 
-To install Idiot:
+## Building
 
-    $ python setup.py install
+To build the app:
 
-## Operation
-
-Currently the app can only be run from the command line while the `py2app` issue is resolved. This has the side effect of always having an icon in the Dock.
-
-A command line entry point is installed by the `setup.py` script. Run it:
-
-    $ idiot
+    $ python setup.py py2app
 
 ### Notifications
 
