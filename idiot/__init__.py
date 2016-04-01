@@ -5,6 +5,7 @@ import logging
 import datetime
 import random
 import emoji
+import psutil
 
 from scruffy import *
 from Foundation import *
@@ -89,6 +90,30 @@ class CheckPlugin(Plugin):
         Run the check. Subclasses must implement this method.
         """
         return (False, "Subclass hasn't implemented the `run` method.")
+
+
+class ProcessCheck(CheckPlugin):
+    """
+    Checks for the existence of a process.
+    """
+    process_names = []
+    success_msg = "no processes found"
+    fail_msg = "found processes with pids: {pids}"
+    invert = False
+
+    def run(self):
+        pids = []
+        for p in psutil.process_iter():
+            try:
+                if p.name() in self.process_names:
+                    pids.append(p.pid)
+            except psutil.NoSuchProcess:
+                pass
+
+        if len(pids):
+            return (self.invert, self.fail_msg.format(pids=', '.join([str(p) for p in pids])))
+        else:
+            return (not self.invert, self.success_msg)
 
 
 class CheckManager(PluginManager):

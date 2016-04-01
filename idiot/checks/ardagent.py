@@ -15,32 +15,16 @@ requirement: ARD permits remote execution and beyond as the accessing or
     but we'll try to check the launchctl one too later
 
 """
-import logging
-import subprocess
-import os
-import psutil
-
 import idiot
-from idiot import CheckPlugin
-
-log = logging.getLogger()
+from idiot import ProcessCheck
 
 
-class RemoteManagementCheck(CheckPlugin):
+class RemoteManagementCheck(ProcessCheck):
     name = "Remote Management"
+    process_names = ["ARDAgent"]
+    fail_msg = "enabled in Sharing Prefs: Remote Management - pids: {pids}"
+    success_message = "disabled"
 
-    def run(self):
-        pids = []
-        for p in psutil.process_iter():
-            try:
-                if p.name() == "ARDAgent":
-                    pids.append(p.pid)
-            except psutil.NoSuchProcess:
-                pass
-        if len(pids):
-            return (False, "enabled in Sharing Prefs: Remote Management - pids: {}".format(', '.join([str(p) for p in pids])))
-        else:
-            return (True, "disabled")
 
 if __name__ == "__main__":
     print(RemoteManagementCheck().run())
