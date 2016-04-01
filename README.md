@@ -23,7 +23,7 @@ Built-in checks:
 
 ## Installation
 
-Download the binary from `releases` on GitHub, unzip and drag the app to the `/Applications` folder.
+Download the latest binary [here](https://github.com/snare/idiot/releases), unzip the zip file and drag the app to the `/Applications` folder.
 
 ## Building
 
