@@ -31,6 +31,12 @@ To build the app:
 
     $ python setup.py py2app
 
+### Status Menu
+
+Idiot adds an icon to the OS X status bar. Hopefully this will be a happy face telling you everything is OK. If something goes wrong, the icon changes. The menu underneath the icon reflects the status of the most recent run of checks:
+
+![status_menu](http://i.imgur.com/ZwAAfna.png)
+
 ### Notifications
 
 Whenever a check is failed, a notification is displayed via OS X's Notification Center. Notifications have 2 buttons: "Dismiss" and "Snooze". "Dismiss" simply closes the notification. "Snooze", however, notifies Idiot that you'd like to temporarily disable notifications for this particular check.
@@ -38,12 +44,6 @@ Whenever a check is failed, a notification is displayed via OS X's Notification 
 ![notification](http://i.imgur.com/YzlteKX.png)
 
 Snoozing uses a series of intervals (by default 1hr, 6hrs and forever) so the first time you snooze for a check it will disable notifications for the first interval (e.g. 1hr). If you hit snooze again it'll disable for the second interval (e.g. 6hrs), and if you hit snooze a third time it will disable for the 3rd interval (e.g. forever by default). "Forever" in this instance means "until the check is passed again" (so, until the firewall is enabled and Idiot checks it again, for example). Snooze state does not persist across restarts of Idiot.
-
-### Status Menu
-
-Idiot adds an icon to the OS X status bar. Hopefully this will be a happy face telling you everything is OK. If something goes wrong, the icon changes. The menu underneath the icon reflects the status of the most recent run of checks:
-
-![status_menu](http://i.imgur.com/ZwAAfna.png)
 
 ## Configuration
 
