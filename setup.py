@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name="Idiot",
     version="0.1",
-    author="snare",
+    author="snare & y011",
     author_email="snare@ho.ax",
     description=(""),
     license="MIT",
