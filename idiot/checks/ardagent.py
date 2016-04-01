@@ -23,7 +23,7 @@ class RemoteManagementCheck(ProcessCheck):
     name = "Remote Management"
     process_names = ["ARDAgent"]
     fail_msg = "enabled in Sharing Prefs: Remote Management - pids: {pids}"
-    success_message = "disabled"
+    success_msg = "disabled"
 
 
 if __name__ == "__main__":
