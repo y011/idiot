@@ -31,6 +31,10 @@ To build the app:
 
     $ python setup.py py2app
 
+## Running
+
+Launch `Idiot.app`.
+
 ### Status Menu
 
 Idiot adds an icon to the OS X status bar. Hopefully this will be a happy face telling you everything is OK. If something goes wrong, the icon changes. The menu underneath the icon reflects the status of the most recent run of checks:
