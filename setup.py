@@ -17,7 +17,7 @@ setup(
         'plist': {
             'LSUIElement': True,
         },
-        'packages': ['rumps'],
+        'packages': ['rumps', 'idiot', 'scruffy', 'psutil', 'biplist', 'emoji'],
     }},
     setup_requires=['py2app'],
     install_requires=['rumps', 'scruffington', 'psutil', 'biplist', 'emoji'],
