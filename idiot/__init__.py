@@ -4,12 +4,13 @@ import AppKit
 import logging
 import datetime
 import random
+import emoji
+import psutil
 
 from scruffy import *
 from Foundation import *
 
-OK_TITLES = [u"😏", u"😁", u"😃", u"😄", u"😆"]
-NOT_OK_TITLES = [u"🚑"]
+inited = False
 
 inited = False
 
@@ -93,6 +94,30 @@ class CheckPlugin(Plugin):
         return (False, "Subclass hasn't implemented the `run` method.")
 
 
+class ProcessCheck(CheckPlugin):
+    """
+    Checks for the existence of a process.
+    """
+    process_names = []
+    success_msg = "no processes found"
+    fail_msg = "found processes with pids: {pids}"
+    invert = False
+
+    def run(self):
+        pids = []
+        for p in psutil.process_iter():
+            try:
+                if p.name() in self.process_names:
+                    pids.append(p.pid)
+            except psutil.NoSuchProcess:
+                pass
+
+        if len(pids):
+            return (self.invert, self.fail_msg.format(pids=', '.join([str(p) for p in pids])))
+        else:
+            return (not self.invert, self.success_msg)
+
+
 class CheckManager(PluginManager):
     last_ok = True
 
@@ -149,10 +174,9 @@ class CheckManager(PluginManager):
             if self.last_ok != all_ok:
                 self.last_ok = all_ok
                 if all_ok:
-                    app.title = random.choice(OK_TITLES)
+                    app.title = emoji.emojize(random.choice(list(config.ok_titles)), use_aliases=True)
                 else:
-                    app.title = random.choice(NOT_OK_TITLES)
-
+                    app.title = emoji.emojize(random.choice(list(config.not_ok_titles)), use_aliases=True)
             app.update_menu()
         except NameError:
             log.error("No app")
@@ -161,7 +185,7 @@ class CheckManager(PluginManager):
 class IdiotApp(rumps.App):
     def __init__(self, *args, **kwargs):
         super(IdiotApp, self).__init__(*args, **kwargs)
-        self.title = random.choice(OK_TITLES)
+        self.title = emoji.emojize(random.choice(list(config.ok_titles)), use_aliases=True)
         self.cm = CheckManager()
         self.quit_button = None
         self.update_menu()
@@ -180,7 +204,8 @@ class IdiotApp(rumps.App):
             item = rumps.MenuItem("{} ({})".format(check.name, msg), callback=dummy)
             item.state = 1 if success else -1
             menu.append(item)
-        self.menu = menu + [None, rumps.MenuItem('Quit', callback=rumps.quit_application)]
+        self.menu = menu + [None, rumps.MenuItem('Check Now', callback=self.cm.run_checks),
+                            rumps.MenuItem('Quit', callback=rumps.quit_application)]
 
 
 def main():

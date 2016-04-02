@@ -15,7 +15,7 @@ class DockerCheck(CheckPlugin):
 
     def run(self):
         try:
-            output = subprocess.check_output(['docker-machine', 'ls']).split('\n')[1:]
+            output = subprocess.check_output(['/usr/local/bin/docker-machine', 'ls']).split('\n')[1:]
             running = [line.split()[0] for line in output if 'Running' in line]
 
             for dm in running:

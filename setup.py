@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name="Idiot",
     version="0.1",
-    author="snare",
+    author="snare & y011",
     author_email="snare@ho.ax",
     description=(""),
     license="MIT",
@@ -17,10 +17,10 @@ setup(
         'plist': {
             'LSUIElement': True,
         },
-        'packages': ['rumps'],
+        'packages': ['rumps', 'idiot', 'scruffy', 'psutil', 'biplist', 'emoji'],
     }},
     setup_requires=['py2app'],
-    install_requires=['rumps', 'scruffington', 'psutil', 'biplist'],
+    install_requires=['rumps', 'scruffington', 'psutil', 'biplist', 'emoji'],
     entry_points={
         'console_scripts': ['idiot=idiot:main']
     },

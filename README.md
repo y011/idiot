@@ -23,19 +23,23 @@ Built-in checks:
 
 ## Installation
 
-Note: Eventually this will be a proper `.app` but there's a bug that needs to be addressed which means it doesn't work as a `py2app` target yet.
+Download the latest binary [here](https://github.com/snare/idiot/releases), unzip the zip file and drag the app to the `/Applications` folder.
 
-To install Idiot:
+## Building
 
-    $ python setup.py install
+To build the app:
 
-## Operation
+    $ python setup.py py2app
 
-Currently the app can only be run from the command line while the `py2app` issue is resolved. This has the side effect of always having an icon in the Dock.
+## Running
 
-A command line entry point is installed by the `setup.py` script. Run it:
+Launch `Idiot.app`.
 
-    $ idiot
+### Status Menu
+
+Idiot adds an icon to the OS X status bar. Hopefully this will be a happy face telling you everything is OK. If something goes wrong, the icon changes. The menu underneath the icon reflects the status of the most recent run of checks:
+
+![status_menu](http://i.imgur.com/ZwAAfna.png)
 
 ### Notifications
 
@@ -44,12 +48,6 @@ Whenever a check is failed, a notification is displayed via OS X's Notification 
 ![notification](http://i.imgur.com/YzlteKX.png)
 
 Snoozing uses a series of intervals (by default 1hr, 6hrs and forever) so the first time you snooze for a check it will disable notifications for the first interval (e.g. 1hr). If you hit snooze again it'll disable for the second interval (e.g. 6hrs), and if you hit snooze a third time it will disable for the 3rd interval (e.g. forever by default). "Forever" in this instance means "until the check is passed again" (so, until the firewall is enabled and Idiot checks it again, for example). Snooze state does not persist across restarts of Idiot.
-
-### Status Menu
-
-Idiot adds an icon to the OS X status bar. Hopefully this will be a happy face telling you everything is OK. If something goes wrong, the icon changes. The menu underneath the icon reflects the status of the most recent run of checks:
-
-![status_menu](http://i.imgur.com/ZwAAfna.png)
 
 ## Configuration
 
@@ -68,7 +66,7 @@ New checks must be explicitly enabled in config. Edit your `~/.idiot/config` and
       ...
       - MyUserCheck
 
-When testing, you might want to edit your config to enable debug loggin, make the checks run more frequently and lower the snooze intervals with a config like this:
+When testing, you might want to edit your config to enable debug logging, make the checks run more frequently and lower the snooze intervals with a config like this:
 
     debug_logging:  true
     check_interval: 10
